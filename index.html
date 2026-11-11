@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦐</text></svg>">
+<title>Cristal Lakers · Krillion League</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Nunito:wght@500;700;800;900&family=JetBrains+Mono:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lake:#06182b; --lake2:#0a2440; --card:rgba(12,34,60,.78); --card-solid:#0e2846; --line:rgba(140,190,255,.16);
+  --ink:#f3f8ff; --ink2:#b7c9e0; --ink3:#7d93b2;
+  --purple:#9b6bff; --gold:#ffc83d; --aqua:#3ee0d0; --pink:#ff5f8a;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181;
+  --t-plankton:#5b6b82; --t-schooler:#2f8f9d; --t-rare:#3987e5; --t-deepcut:#7b5cf0; --t-krillion:#ff5f8a; --t-miss:#1c2c45;
+}
+*{box-sizing:border-box}
+html{background:var(--lake)}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;color:var(--ink);min-height:100vh;
+  background:linear-gradient(180deg,var(--lake2) 0%,var(--lake) 60%,#040e1a 100%);overflow-x:hidden}
+.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+h1,h2,h3,.fun{font-family:"Lilita One",Nunito,sans-serif;font-weight:400;margin:0;letter-spacing:.01em}
+
+/* HERO */
+.hero{position:relative;min-height:min(600px,62vw);display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;background:url("hero.jpg") center 92%/cover no-repeat;transform:scale(1.04);z-index:-2;animation:drift 18s ease-in-out infinite alternate}
+@keyframes drift{to{transform:scale(1.1) translateY(-8px)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(6,24,43,.25) 0%,rgba(6,24,43,0) 30%,rgba(6,24,43,0) 55%,rgba(10,36,64,.7) 80%,var(--lake2) 100%),
+             radial-gradient(800px 300px at 15% 100%,rgba(155,107,255,.35),transparent 70%)}
+.hero-in{width:100%;max-width:1040px;margin:0 auto;padding:0 18px 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(52px,10vw,96px);line-height:.9;margin-top:12px;text-shadow:0 4px 0 rgba(0,0,0,.25),0 10px 40px rgba(0,0,0,.4)}
+.hero h1 span{background:linear-gradient(90deg,var(--gold),#ffe08a 40%,var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;filter:drop-shadow(0 4px 0 rgba(0,0,0,.25))}
+.hero .sub{font-weight:800;font-size:18px;margin-top:6px;opacity:.95}
+.count{background:rgba(6,24,43,.55);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:12px 18px;text-align:center}
+.count b{display:block;font-family:"Lilita One";font-size:40px;line-height:1;color:var(--gold)}
+.count span{font-size:12px;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.08em}
+.count small{display:block;font-size:11px;color:var(--ink3);margin-top:6px}
+.bubbles{position:absolute;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.bubbles i{position:absolute;bottom:-20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.06);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-480px) translateX(20px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-bg,.bubbles i{animation:none}}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px 80px}
+nav{position:sticky;top:0;z-index:20;display:flex;gap:8px;padding:14px 0;overflow-x:auto;background:linear-gradient(180deg,var(--lake2) 70%,transparent)}
+nav a{flex:none;text-decoration:none;color:var(--ink2);padding:10px 18px;border-radius:999px;border:2px solid var(--line);font-weight:900;font-size:15px;background:var(--card);transition:transform .15s}
+nav a:hover{transform:translateY(-2px)}
+nav a.on{background:var(--gold);color:#2a1a00;border-color:var(--gold);box-shadow:0 4px 0 #b88a12}
+section{display:none;animation:pop .25s ease} section.on{display:block}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.grid{display:grid;gap:16px}
+.lbl{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);font-weight:900}
+.h{font-size:24px;margin:4px 0 14px}
+
+.av{border-radius:50%;flex:none;display:grid;place-items:center;font-family:"Lilita One";color:#fff;overflow:hidden;background:#24395a;position:relative}
+.av img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+
+/* PODIUM */
+.podium3{display:grid;grid-template-columns:1fr 1.15fr 1fr;align-items:end;gap:12px;padding-top:10px}
+.pd{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0}
+.pd .av{width:72px;height:72px;font-size:28px;border:4px solid #fff;box-shadow:0 6px 18px rgba(0,0,0,.35);margin-bottom:-14px;z-index:1}
+.pd.p1 .av{width:96px;height:96px;font-size:38px;border-color:var(--gold)}
+.pd.p2 .av{border-color:#cfd8e6} .pd.p3 .av{border-color:#d99a5b}
+.pd .crown{font-size:30px;line-height:1;margin-bottom:-6px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-5px) rotate(-6deg)}}
+.block{width:100%;border-radius:18px 18px 10px 10px;padding:22px 8px 14px;color:#1b1203}
+.p1 .block{background:linear-gradient(180deg,#ffd75e,#f0a91a);min-height:170px;box-shadow:0 6px 0 #a8730c}
+.p2 .block{background:linear-gradient(180deg,#e9eef6,#aebbd0);min-height:130px;box-shadow:0 6px 0 #7b879b}
+.p3 .block{background:linear-gradient(180deg,#f2b880,#c97a3a);min-height:105px;box-shadow:0 6px 0 #8b4f1f}
+.block .medal{font-size:26px}
+.block .nm{font-weight:900;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.block .pt{font-family:"Lilita One";font-size:30px;line-height:1.1}
+.block .ex{font-size:12px;font-weight:800;opacity:.75}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{padding:16px 18px;position:relative;overflow:hidden}
+.stat .e{position:absolute;right:10px;top:8px;font-size:34px;opacity:.9;transform:rotate(8deg)}
+.stat .v{font-family:"Lilita One";font-size:32px;margin-top:6px}
+.stat .s{font-size:13px;color:var(--ink2);font-weight:700}
+
+/* table */
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:16px;padding:10px 14px;transition:transform .15s,background .15s}
+.row:hover{transform:translateX(4px);background:rgba(255,255,255,.07)}
+.row .n{font-family:"Lilita One";font-size:22px;color:var(--ink3);text-align:center}
+.row .mid{min-width:0}
+.row .who{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px}
+.row .who .av{width:38px;height:38px;font-size:16px}
+.bar{height:8px;border-radius:99px;background:rgba(255,255,255,.07);margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--purple),var(--aqua))}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.bdg{font-size:12px;font-weight:800;padding:2px 8px;border-radius:99px;background:rgba(255,255,255,.08);color:var(--ink2)}
+.bdg.g{background:rgba(255,200,61,.18);color:var(--gold)} .bdg.k{background:rgba(255,95,138,.18);color:#ff9ab5}
+.row .pts{text-align:right;font-family:"Lilita One";font-size:26px;line-height:1}
+.row .pts small{display:block;font-family:Nunito;font-size:11px;font-weight:800;color:var(--ink3);margin-top:4px}
+.row.idle{opacity:.45}
+.tip{color:var(--ink3);font-size:13px;margin-top:12px;font-weight:600}
+
+/* chart */
+.chart{position:relative}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:4px 0 10px;font-size:14px;font-weight:800;color:var(--ink2)}
+.legend i{display:inline-block;width:16px;height:4px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.ttip{position:absolute;pointer-events:none;background:#071a30;border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13px;color:var(--ink2);min-width:160px;opacity:0;transition:opacity .1s;z-index:5;font-weight:700}
+.ttip b{color:var(--ink)} .ttip .r{display:flex;justify-content:space-between;gap:12px}
+
+/* day */
+.days{display:flex;gap:8px;overflow-x:auto;margin-bottom:16px;padding-bottom:4px}
+.days button{flex:none;font:900 14px Nunito;color:var(--ink2);background:var(--card);border:2px solid var(--line);border-radius:14px;padding:8px 14px;cursor:pointer}
+.days button.on{background:var(--purple);color:#fff;border-color:var(--purple);box-shadow:0 4px 0 #5d3cb5}
+.dpod{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.pchip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:2px solid var(--line);border-radius:16px;padding:8px 14px 8px 8px}
+.pchip .av{width:40px;height:40px;font-size:16px}
+.pchip b{display:block;font-size:15px;font-weight:900}
+.pchip span{font-size:13px;color:var(--ink2);font-weight:700}
+.pchip.win{border-color:var(--gold);background:rgba(255,200,61,.1)}
+.prompt{margin-top:16px}
+.prompt h3{font-size:19px;margin-bottom:8px}
+.prompt h3 em{font-style:normal;color:var(--gold);margin-right:8px}
+.ans{display:flex;flex-wrap:wrap;gap:6px}
+.a{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:6px 10px 6px 6px;font-size:14px;font-weight:800;background:var(--t-miss);color:var(--ink)}
+.a .av{width:24px;height:24px;font-size:11px}
+.a s{text-decoration:none;font-family:"JetBrains Mono";font-size:11px;opacity:.85}
+.a.plankton{background:var(--t-plankton)} .a.schooler{background:var(--t-schooler)} .a.rare{background:var(--t-rare)}
+.a.deepcut{background:var(--t-deepcut)} .a.krillion{background:var(--t-krillion);color:#1a0610;box-shadow:0 0 0 2px #ffd0dc inset,0 0 18px rgba(255,95,138,.5)}
+.a.miss{color:var(--ink3);text-decoration:line-through}
+.a.miss .av,.a.miss s{text-decoration:none}
+.tiers{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tiers .a{padding:6px 12px}
+
+/* krillions */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.kc{background:linear-gradient(160deg,#ff5f8a,#b23a7a);border-radius:20px;padding:18px;box-shadow:0 6px 0 #6e1f4a;transform:rotate(-1deg);transition:transform .15s}
+.kc:nth-child(even){transform:rotate(1deg)} .kc:hover{transform:rotate(0) scale(1.03)}
+.kc.dc{background:linear-gradient(160deg,#8b6bff,#4b31b8);box-shadow:0 6px 0 #2c1c74}
+.kc .lbl{color:rgba(255,255,255,.8)}
+.kc .ans-t{font-family:"Lilita One";font-size:28px;margin:6px 0 8px;word-break:break-word;line-height:1.05}
+.kc .q{font-size:13px;color:rgba(255,255,255,.85);line-height:1.4;font-weight:700}
+.kc .by{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;font-weight:800}
+.kc .by .av{width:26px;height:26px;font-size:11px;border:2px solid #fff}
+.toggle{display:flex;gap:8px;margin-bottom:14px}
+.toggle button{font:900 14px Nunito;color:var(--ink2);background:var(--card);border:2px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.toggle button.on{background:var(--pink);color:#fff;border-color:var(--pink)}
+.empty{color:var(--ink2);text-align:center;padding:40px 10px;font-weight:800;font-size:16px}
+.empty .big{font-size:48px;display:block;margin-bottom:8px}
+.rules li{margin:10px 0;color:var(--ink2);line-height:1.5;font-weight:600} .rules b{color:var(--ink)}
+
+/* easter egg */
+.egg-zone{height:120px}
+.egg{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%) rotate(-3deg);z-index:50;
+  background:linear-gradient(135deg,var(--gold),#ff9d3d);color:#2a1300;font-family:"Lilita One",sans-serif;font-size:clamp(20px,4.5vw,30px);
+  padding:16px 26px;border-radius:20px;box-shadow:0 8px 0 #a8590c,0 18px 40px rgba(0,0,0,.45);text-align:center;white-space:nowrap;
+  transition:transform .45s cubic-bezier(.2,1.6,.4,1);pointer-events:none}
+.egg.show{transform:translate(-50%,0) rotate(-3deg);animation:wob 1.2s ease-in-out .45s 2}
+@keyframes wob{25%{transform:translate(-50%,0) rotate(3deg)}50%{transform:translate(-50%,-6px) rotate(-4deg)}75%{transform:translate(-50%,0) rotate(2deg)}}
+
+/* come-curioso */
+.cc{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px;
+  background:radial-gradient(circle at 50% 40%,#3b0f2e 0%,#12020d 70%,#000 100%);overflow:hidden}
+.cc.on{display:flex;animation:ccin .5s ease-out}
+@keyframes ccin{0%{clip-path:circle(0 at 50% 100%)}100%{clip-path:circle(150% at 50% 100%)}}
+.cc svg{width:min(78vw,380px);height:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));animation:ccbob 1.6s ease-in-out infinite}
+@keyframes ccbob{50%{transform:translateY(-10px) rotate(-2deg)}}
+.cc .jaw{animation:chomp .35s ease-in-out infinite alternate;transform-origin:200px 250px}
+@keyframes chomp{to{transform:translateY(18px)}}
+.cc .eye{animation:look 2.4s ease-in-out infinite}
+@keyframes look{30%{transform:translate(10px,4px)}60%{transform:translate(-12px,2px)}}
+.cc h2{font-size:clamp(28px,7vw,48px);color:#c6ff4a;text-shadow:0 4px 0 #3d5a00,0 0 30px rgba(198,255,74,.35);line-height:1.05;max-width:640px}
+.cc p{color:#f3c6e3;font-weight:800;font-size:17px;max-width:460px;margin:0}
+.cc button{margin-top:12px;font:400 20px "Lilita One",sans-serif;background:var(--gold);color:#2a1300;border:0;border-radius:16px;padding:12px 24px;box-shadow:0 6px 0 #a8590c;cursor:pointer}
+.cc .burp{position:absolute;font-family:"Lilita One";color:#c6ff4a;opacity:.18;font-size:90px;transform:rotate(-12deg);top:6%;left:4%}
+
+/* katarina */
+.kat{position:fixed;inset:0;z-index:90;pointer-events:none;overflow:hidden;display:none}
+.kat.on{display:block}
+.kat .shr{position:absolute;font-size:var(--sz);left:-80px;top:var(--y);animation:swim var(--d) linear var(--dl) forwards;will-change:transform}
+@keyframes swim{0%{transform:translateX(0) translateY(0) rotate(var(--r))}25%{transform:translateX(30vw) translateY(-18px) rotate(calc(var(--r) + 8deg))}
+  50%{transform:translateX(60vw) translateY(14px) rotate(var(--r))}75%{transform:translateX(90vw) translateY(-12px) rotate(calc(var(--r) - 8deg))}100%{transform:translateX(calc(100vw + 160px)) translateY(0) rotate(var(--r))}}
+.kat .msg{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.2);opacity:0;text-align:center;animation:boom 3.6s cubic-bezier(.2,1.5,.4,1) .3s forwards}
+@keyframes boom{12%{transform:translate(-50%,-50%) scale(1.08) rotate(-4deg);opacity:1}20%{transform:translate(-50%,-50%) scale(1) rotate(-3deg)}85%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-3deg)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.3) rotate(-3deg)}}
+.kat .msg b{display:block;font-family:"Lilita One";font-size:clamp(40px,11vw,96px);line-height:.95;background:linear-gradient(90deg,#ff5f8a,#ffd0dc 45%,#ff5f8a);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 5px 0 #6e1f4a) drop-shadow(0 0 30px rgba(255,95,138,.6))}
+.kat .msg span{display:inline-block;margin-top:10px;background:#ff5f8a;color:#1a0610;font-weight:900;font-size:18px;padding:6px 16px;border-radius:999px;box-shadow:0 4px 0 #6e1f4a}
+.secret{cursor:pointer;display:inline-block}
+.sbox{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:80;display:none}
+.sbox.on{display:block}
+.sbox input{font:800 16px Nunito;padding:12px 16px;border-radius:14px;border:2px solid var(--pink);background:rgba(6,24,43,.92);color:var(--ink);width:220px;outline:none}
+
+/* toast */
+.toast{position:fixed;left:50%;top:18px;transform:translate(-50%,-300%);z-index:95;visibility:hidden;background:#fff;color:#1b1203;font-weight:900;font-size:16px;padding:12px 18px;border-radius:16px;
+  box-shadow:0 6px 0 rgba(0,0,0,.25),0 14px 30px rgba(0,0,0,.35);transition:transform .35s cubic-bezier(.2,1.5,.4,1);max-width:90vw;text-align:center}
+.toast.on{transform:translate(-50%,0);visibility:visible}
+/* monstro do lago */
+.hero{cursor:pointer}.hero .count{cursor:default}
+.lake{position:absolute;left:62%;bottom:-40px;width:min(62vw,380px);transform:translate(-50%,110%);z-index:3;pointer-events:none;transition:transform .9s cubic-bezier(.3,1.4,.5,1)}
+.lake.up{transform:translate(-50%,8%)}
+.lake svg{width:100%;height:auto;display:block}
+.lake .tent{animation:wig 1.1s ease-in-out infinite alternate;transform-origin:bottom center}
+.lake .tent.b{animation-delay:-.5s}
+@keyframes wig{to{transform:rotate(9deg)}}
+.lake .talk{position:absolute;left:58%;top:-6%;background:#fff;color:#1b1203;font-weight:900;font-size:clamp(13px,2.4vw,17px);padding:10px 14px;border-radius:16px;white-space:nowrap;box-shadow:0 4px 0 rgba(0,0,0,.25);opacity:0;transition:opacity .3s .7s}
+.lake .talk::after{content:"";position:absolute;left:18px;bottom:-9px;border:10px solid transparent;border-top-color:#fff;border-bottom:0}
+.lake.up .talk{opacity:1}
+.lake .tag{position:absolute;left:50%;bottom:22%;transform:translateX(-50%) rotate(-3deg);background:var(--purple);color:#fff;font-family:"Lilita One";font-size:clamp(13px,2.4vw,18px);padding:4px 12px;border-radius:10px;white-space:nowrap;box-shadow:0 3px 0 #4b2a9c}
+/* coroa caindo */
+.crown.fall{animation:fall 1.4s cubic-bezier(.5,0,.8,.4) forwards!important}
+@keyframes fall{30%{transform:translateY(-24px) rotate(-30deg)}100%{transform:translateY(420px) rotate(260deg);opacity:0}}
+/* palhaço */
+.a.miss{cursor:pointer;position:relative}
+.clown{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%);background:#fff;color:#1b1203;padding:6px 10px;border-radius:12px;font-size:13px;font-weight:900;white-space:nowrap;z-index:6;box-shadow:0 4px 0 rgba(0,0,0,.25);text-decoration:none;animation:pop .2s ease}
+/* lanterninha */
+.snail{display:inline-block;animation:crawl 3s ease-in-out infinite;font-size:18px}
+@keyframes crawl{50%{transform:translateX(5px)}}
+/* zona abissal */
+.abyss{position:fixed;inset:0;z-index:70;pointer-events:none;display:none;
+  background:radial-gradient(circle 150px at var(--mx,50%) var(--my,50%),rgba(255,240,180,.06) 0,rgba(0,4,10,.35) 55%,rgba(0,3,8,.95) 100%)}
+.abyss.on{display:block}
+.abyss .note{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);color:#9fe8f5;font-weight:900;font-size:14px;letter-spacing:.06em;text-align:center;pointer-events:auto}
+.abyss .note button{margin-left:8px;font:900 12px Nunito;background:#9fe8f5;color:#03121c;border:0;border-radius:99px;padding:5px 10px;cursor:pointer}
+.angler{position:fixed;left:var(--mx,50%);top:var(--my,50%);transform:translate(-50%,-50%);font-size:12px;filter:drop-shadow(0 0 10px #fff3b0) drop-shadow(0 0 22px #ffe680);pointer-events:none}
+@media (max-width:640px){
+  .lake{left:50%;width:74vw;bottom:-20px}.lake.up{transform:translate(-50%,-4%)}
+  .lake .talk{left:50%;transform:translateX(-50%);top:-16%;white-space:normal;width:max-content;max-width:64vw;text-align:center}
+  .lake .talk::after{left:50%;margin-left:-10px}
+
+  .hero{min-height:420px}.hero-bg{background-position:center 100%}
+  .podium3{gap:8px} .pd .av{width:56px;height:56px} .pd.p1 .av{width:74px;height:74px}
+  .block .pt{font-size:22px} .p1 .block{min-height:140px} .p2 .block{min-height:110px} .p3 .block{min-height:90px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-bg" role="img" aria-label="Foto do grupo Cristal Lakers no barco"></div>
+  <div class="bubbles" id="bubbles"></div>
+  <div class="lake" id="lake" aria-hidden="true">
+    <div class="talk">o que vocês tão apontando, hein? 👀</div>
+    <svg viewBox="0 0 400 300">
+      <path class="tent" d="M40 300 C30 230 60 180 30 130 C20 110 46 100 56 122 C80 170 70 230 90 300Z" fill="#7a3fb8"/>
+      <path class="tent b" d="M360 300 C372 240 344 190 372 140 C382 120 356 108 346 130 C322 176 330 236 310 300Z" fill="#7a3fb8"/>
+      <path d="M80 300 C70 190 120 90 200 88 C280 86 332 190 320 300Z" fill="#9b5de5"/>
+      <path d="M150 96 C140 60 120 40 104 36 M250 96 C262 60 282 40 300 36" stroke="#9b5de5" stroke-width="14" stroke-linecap="round" fill="none"/>
+      <circle cx="104" cy="34" r="22" fill="#fff"/><circle cx="110" cy="38" r="10" fill="#14041f"/>
+      <circle cx="300" cy="34" r="16" fill="#fff"/><circle cx="294" cy="30" r="7" fill="#14041f"/>
+      <circle cx="200" cy="150" r="30" fill="#fff"/><circle cx="208" cy="156" r="14" fill="#14041f"/><circle cx="214" cy="148" r="4" fill="#fff"/>
+      <path d="M130 210 C170 250 230 250 270 210 C262 270 140 270 130 210Z" fill="#2a0622"/>
+      <path d="M140 214 L152 232 L162 220 L174 240 L186 224 L200 244 L214 224 L226 240 L238 220 L248 232 L262 214" fill="none" stroke="#fff4c2" stroke-width="5" stroke-linejoin="round"/>
+      <circle cx="120" cy="180" r="7" fill="#7a3fb8"/><circle cx="286" cy="200" r="9" fill="#7a3fb8"/><circle cx="160" cy="120" r="5" fill="#7a3fb8"/>
+      <path d="M60 296 C120 280 280 280 340 296" stroke="#bfe6ff" stroke-width="6" stroke-linecap="round" fill="none" opacity=".7"/>
+    </svg>
+    <div class="tag">Come-Cu-de-Quem-Aponta</div>
+  </div>
+  <div class="hero-in">
+    <div>
+      <span class="tag">💎 Krillion League · Temporada 2026</span>
+      <h1>Cristal <span>Lakers</span></h1>
+      <div class="sub">Quem afunda mais fundo, manda no lago. <span class="secret" id="secret" title="?">🦐</span></div>
+    </div>
+    <div class="count" id="count"><b>–</b><span>dias pra acabar</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav id="nav">
+    <a href="#ranking" data-v="ranking">🏆 Ranking</a>
+    <a href="#dia" data-v="dia">📅 Dia a dia</a>
+    <a href="#krillions" data-v="krillions">🦐 Krillions</a>
+    <a href="#regras" data-v="regras">📜 Regras</a>
+  </nav>
+
+  <section id="v-ranking">
+    <div class="grid">
+      <div class="card"><div class="lbl">Pódio da temporada</div><div id="podium3"></div></div>
+      <div class="stats" id="stats"></div>
+      <div class="card"><div class="lbl">Classificação geral</div><h2 class="h">Tabela do lago</h2><div class="rows" id="rows"></div>
+        <div class="tip">Pontos = soma dos scores diários. Empate: mais 👑, depois mais 🦐.</div></div>
+      <div class="card"><div class="lbl">Pontos acumulados</div><h2 class="h">A corrida</h2><div class="legend" id="legend"></div><div class="chart" id="chart"></div></div>
+    </div>
+  </section>
+
+  <section id="v-dia">
+    <div class="days" id="days"></div>
+    <div class="card"><div class="dpod" id="dpod"></div><div id="prompts"></div></div>
+  </section>
+
+  <section id="v-krillions">
+    <div class="toggle" id="ktoggle"><button data-k="krillion" class="on">🦐 One in a Krillion</button><button data-k="deepcut">🌊 Deep Cuts</button></div>
+    <div class="gal" id="gal"></div>
+  </section>
+
+  <section id="v-regras">
+    <div class="card rules">
+      <h2 class="h" style="font-size:30px">Regras do lago</h2>
+      <ul>
+        <li><b>Automático:</b> o placar da aba Friends do Krillion é salvo aqui várias vezes por dia, então nada se perde no reset.</li>
+        <li><b>Pontos:</b> soma do score de cada dive (máx. 700 por dia). Não jogou, somou 0.</li>
+        <li><b>👑 Rei do dia:</b> maior score do dia. Empatou, todo mundo leva coroa.</li>
+        <li><b>🦐 Krillions:</b> toda resposta "One in a Krillion" (100 pts) vai pra galeria com autor e data.</li>
+        <li><b>Desempate:</b> mais coroas, depois mais krillions.</li>
+        <li><b>Temporada:</b> de <span id="r-start"></span> até 31/12/2026.</li>
+      </ul>
+      <div class="lbl" style="margin-top:16px">Níveis de resposta</div>
+      <div class="tiers">
+        <span class="a plankton">Plankton · 10</span><span class="a schooler">Schooler · 30</span><span class="a rare">Rare · 60</span>
+        <span class="a deepcut">Deep Cut · 85</span><span class="a krillion">One in a Krillion · 100</span><span class="a miss">Não aceita · 0</span>
+      </div>
+    </div>
+  </section>
+  <div class="egg-zone" id="eggzone"></div>
+</div>
+<div class="cc" id="cc" role="dialog" aria-label="Você foi comido pelo Come-Curioso">
+  <div class="burp">BURP</div>
+  <svg viewBox="0 0 400 360" aria-hidden="true">
+    <path d="M60 210 C40 120 110 40 200 42 C300 44 360 110 345 200 C338 250 300 300 200 302 C110 304 70 260 60 210Z" fill="#6b8f1f"/>
+    <path d="M92 120 C80 90 70 70 50 64 C76 60 100 80 112 104Z M300 104 C316 78 338 62 362 66 C340 74 326 92 318 120Z" fill="#4e6b12"/>
+    <circle cx="120" cy="170" r="10" fill="#4e6b12"/><circle cx="290" cy="150" r="14" fill="#4e6b12"/><circle cx="310" cy="230" r="8" fill="#4e6b12"/><circle cx="96" cy="240" r="6" fill="#4e6b12"/>
+    <g><ellipse cx="200" cy="128" rx="58" ry="52" fill="#fff8d6"/><path d="M150 108 C170 98 186 120 206 104 C222 96 238 110 252 104" stroke="#d9474f" stroke-width="3" fill="none"/>
+      <g class="eye"><circle cx="206" cy="134" r="24" fill="#d97b00"/><circle cx="206" cy="134" r="11" fill="#120208"/><circle cx="214" cy="126" r="5" fill="#fff"/></g>
+      <path d="M138 96 C170 70 236 70 266 98" stroke="#2c3d08" stroke-width="12" stroke-linecap="round" fill="none"/></g>
+    <path d="M110 214 C150 200 250 198 292 214 L284 236 C240 228 160 228 116 238Z" fill="#2a0613"/>
+    <path d="M118 214 L132 240 L146 210 L158 244 L172 208 L186 236 L200 206 L216 246 L230 208 L244 238 L258 210 L270 242 L286 214Z" fill="#fff4c2" stroke="#c9b26a" stroke-width="2"/>
+    <g class="jaw"><path d="M116 238 C160 268 244 270 284 236 C280 270 246 296 200 296 C152 296 120 272 116 238Z" fill="#2a0613"/>
+      <path d="M130 250 L144 232 L156 256 L170 236 L184 260 L198 238 L214 262 L228 238 L242 258 L256 236 L270 250" fill="#fff4c2" stroke="#c9b26a" stroke-width="2"/>
+      <path d="M168 282 C176 300 170 318 178 334" stroke="#9fe04a" stroke-width="7" stroke-linecap="round" fill="none" opacity=".85"/></g>
+    <path d="M70 300 C60 330 90 336 104 316 M300 300 C312 330 336 324 330 300" stroke="#4e6b12" stroke-width="16" stroke-linecap="round" fill="none"/>
+  </svg>
+  <h2>Você acabou de ser comido pelo Come-Curioso</h2>
+  <p>Quem fuça demais no fundo do lago vira janta. Ninguém mandou forçar. 🦐</p>
+  <button id="ccback">↩︎ Voltar pro lago</button>
+</div>
+<div class="toast" id="toast"></div>
+<div class="abyss" id="abyss"><div class="angler">●</div><div class="note">🌑 ZONA ABISSAL · você não devia estar acordado <button id="lights">acender a luz</button></div></div>
+<div class="kat" id="kat"><div class="msg"><b>ONE IN A<br>KRILLION</b><span>+100 pts de respeito</span></div></div>
+<div class="sbox" id="sbox"><input id="sin" placeholder="psiu… digita algo" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+<div class="egg" id="egg" aria-live="polite">🫠 não tem mais nada aqui caralho</div>
+
+<script>
+const SERIES = ["var(--s1)","var(--s2)","var(--s3)","var(--s4)","var(--s5)"];
+const TIER = {plankton:"Plankton",schooler:"Schooler",rare:"Rare",deepcut:"Deep Cut",krillion:"One in a Krillion"};
+const AVC = ["#3a6fb5","#b5533a","#2e8a6a","#9a7420","#a8457a","#5b4fb8","#3d8a9a","#8a4b3d"];
+const $ = s => document.querySelector(s);
+const el = (t, c, txt) => { const e = document.createElement(t); if (c) e.className = c; if (txt != null) e.textContent = txt; return e; };
+const fmtD = d => { const [y,m,dd] = d.split("-"); return dd + "/" + m; };
+const wk = d => ["dom","seg","ter","qua","qui","sex","sáb"][new Date(d+"T12:00:00").getDay()];
+const nf = n => n.toLocaleString("pt-BR");
+let D = null, AVS = {};
+
+// bubbles
+(() => { const b = $("#bubbles"); for (let i=0;i<14;i++){ const e = document.createElement("i"); const s = 6+Math.random()*16;
+  e.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${7+Math.random()*9}s;animation-delay:${-Math.random()*12}s`; b.append(e);} })();
+
+function tierOf(score, tier){ if (score >= 100) return "krillion"; if (tier && TIER[tier]) return tier; return score > 0 ? (score>=85?"deepcut":score>=60?"rare":score>=30?"schooler":"plankton") : "miss"; }
+function hash(s){ let h=0; for (const c of s) h=(h*31+c.charCodeAt(0))>>>0; return h; }
+function avatar(u, cls){
+  const a = el("div", "av" + (cls ? " "+cls : ""), u.slice(0,1).toUpperCase());
+  a.style.background = AVC[hash(u) % AVC.length];
+  const src = AVS[u];
+  if (src){ const i = new Image(); i.alt = ""; i.onerror = () => i.remove(); i.src = src; a.appendChild(i); }
+  return a;
+}
+function empty(emoji, msg){ const d = el("div","empty"); d.append(el("span","big",emoji), msg); return d; }
+
+function compute(){
+  const days = Object.keys(D.days).sort();
+  const P = {};
+  const roster = new Set(D.roster || []);
+  days.forEach(d => Object.keys(D.days[d].players).forEach(u => roster.add(u)));
+  roster.forEach(u => P[u] = {u, pts:0, played:0, wins:0, kr:0, dc:0, best:0, cum:[]});
+  const winners = {};
+  days.forEach(d => {
+    const pl = D.days[d].players;
+    const max = Math.max(0, ...Object.values(pl).map(p => p.score));
+    winners[d] = Object.keys(pl).filter(u => pl[u].score === max && max > 0);
+    Object.values(P).forEach(p => {
+      const r = pl[p.u];
+      if (r){
+        p.pts += r.score; p.played++; p.best = Math.max(p.best, r.score);
+        r.answers.forEach(a => { const t = tierOf(a[1], a[2]); if (t==="krillion") p.kr++; if (t==="deepcut") p.dc++; });
+        if (winners[d].includes(p.u)) p.wins++;
+      }
+      p.cum.push(p.pts);
+    });
+  });
+  const list = Object.values(P).sort((a,b) => b.pts-a.pts || b.wins-a.wins || b.kr-a.kr || a.u.localeCompare(b.u));
+  return {days, list, winners};
+}
+
+function render(){
+  const {days, list, winners} = compute();
+  const end = new Date(D.season.end + "T23:59:59");
+  const left = Math.max(0, Math.ceil((end - new Date()) / 864e5));
+  const up = D.updated ? new Date(D.updated) : null;
+  const c = $("#count"); c.replaceChildren(el("b",null,String(left)), el("span",null,"dias pra acabar"));
+  if (up) c.append(el("small",null,"atualizado " + up.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})));
+  $("#r-start").textContent = fmtD(D.season.start) + "/" + D.season.start.slice(0,4);
+
+  // podium
+  const pod = $("#podium3"); pod.replaceChildren();
+  const top = list.filter(p => p.pts > 0).slice(0,3);
+  if (!top.length) pod.append(empty("🌊","Ainda sem resultados. O primeiro placar aparece após a próxima coleta."));
+  else {
+    const g = el("div","podium3");
+    const lead = top[0].pts;
+    [[1,"🥈","p2"],[0,"🥇","p1"],[2,"🥉","p3"]].forEach(([i,medal,cls]) => {
+      const p = top[i]; const d = el("div","pd "+cls);
+      if (!p){ g.append(d); return; }
+      if (i===0) d.append(el("div","crown","👑"));
+      const pav = avatar(p.u); if (i===0){ pav.id = "leadav"; pav.style.cursor = "pointer"; } d.append(pav);
+      const b = el("div","block");
+      b.append(el("div","medal",medal), el("div","nm","@"+p.u), el("div","pt",nf(p.pts)),
+        el("div","ex", i===0 ? `${p.wins}× rei do dia` : `−${nf(lead - p.pts)} do líder`));
+      d.append(b); g.append(d);
+    });
+    pod.append(g);
+  }
+
+  // stats
+  const allAns = days.flatMap(d => Object.entries(D.days[d].players).flatMap(([u,p]) => p.answers.map((a,k) => ({u,d,a,k}))));
+  const kr = allAns.filter(x => tierOf(x.a[1],x.a[2])==="krillion").length;
+  let bestDay = {s:0};
+  days.forEach(d => Object.entries(D.days[d].players).forEach(([u,p]) => { if (p.score > bestDay.s) bestDay = {s:p.score,u,d}; }));
+  const kings = list.filter(p => p.wins).sort((a,b)=>b.wins-a.wins)[0];
+  const S = [
+    ["🤿","Dives na temporada", days.length, "dias registrados"],
+    ["🦐","Krillions achados", kr, "respostas de 100 pts"],
+    ["🔥","Melhor dive", bestDay.s || "–", bestDay.u ? "@"+bestDay.u+" · "+fmtD(bestDay.d) : "ainda nada"],
+    ["👑","Mais coroas", kings ? kings.wins+"×" : "–", kings ? "@"+kings.u : "ainda nada"],
+  ];
+  $("#stats").replaceChildren(...S.map(([e,l,v,s]) => { const c = el("div","card stat"); c.append(el("div","e",e), el("div","lbl",l), el("div","v",String(v)), el("div","s",s)); return c; }));
+
+  // rows
+  const rows = $("#rows"); rows.replaceChildren();
+  const maxPts = Math.max(1, ...list.map(p=>p.pts));
+  const playedL = list.filter(p => p.played); const lanterna = playedL.length > 1 ? playedL[playedL.length-1].u : null;
+  list.forEach((p,i) => {
+    const r = el("div","row"+(p.played?"":" idle"));
+    r.append(el("div","n", i<3 && p.pts ? ["🥇","🥈","🥉"][i] : String(i+1)));
+    const mid = el("div","mid"); const who = el("div","who"); who.append(avatar(p.u), el("span",null,"@"+p.u));
+    if (p.u === lanterna){ const sn = el("span","snail","🐌"); sn.title = "lanterninha"; who.append(sn); }
+    mid.append(who);
+    const bar = el("div","bar"); const fill = el("i"); fill.style.width = (p.pts/maxPts*100)+"%"; bar.append(fill); mid.append(bar);
+    const bd = el("div","badges");
+    if (p.wins) bd.append(el("span","bdg g","👑 "+p.wins));
+    if (p.kr) bd.append(el("span","bdg k","🦐 "+p.kr));
+    if (p.dc) bd.append(el("span","bdg","🌊 "+p.dc+" deep cuts"));
+    bd.append(el("span","bdg", p.played ? `média ${Math.round(p.pts/p.played)} · melhor ${p.best}` : "ainda não mergulhou"));
+    bd.append(el("span","bdg", `${p.played}/${days.length} dias`));
+    mid.append(bd); r.append(mid);
+    const pts = el("div","pts", nf(p.pts)); pts.append(el("small",null,"pontos")); r.append(pts);
+    rows.append(r);
+  });
+
+  renderChart(days, list.filter(p=>p.played).slice(0,5));
+  renderDays(days, winners);
+  renderGal(allAns);
+}
+
+function renderChart(days, top){
+  const box = $("#chart"), lg = $("#legend"); box.replaceChildren(); lg.replaceChildren();
+  if (days.length < 2 || !top.length){ box.append(empty("📈", days.length ? "A corrida aparece a partir do 2º dia de temporada." : "Sem dados ainda.")); return; }
+  top.forEach((p,i) => { const s = el("span"); const k = el("i"); k.style.background = SERIES[i]; s.append(k, "@"+p.u); lg.append(s); });
+  const W=960,H=300,ml=46,mr=100,mt=10,mb=28, iw=W-ml-mr, ih=H-mt-mb;
+  const max = Math.max(...top.map(p=>p.cum[p.cum.length-1]), 1);
+  const nice = Math.pow(10, Math.floor(Math.log10(max))); const ymax = Math.ceil(max/nice)*nice;
+  const x = i => ml + i*iw/(days.length-1), y = v => mt + ih - v/ymax*ih;
+  const NS="http://www.w3.org/2000/svg", mk=(t,a)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;};
+  const svg = mk("svg",{viewBox:`0 0 ${W} ${H}`,role:"img","aria-label":"Pontos acumulados por jogador"});
+  for (let k=0;k<=4;k++){ const v=ymax*k/4; svg.append(mk("line",{x1:ml,x2:ml+iw,y1:y(v),y2:y(v),stroke:"rgba(140,190,255,.14)","stroke-width":1}));
+    const tx=mk("text",{x:ml-8,y:y(v)+4,"text-anchor":"end",fill:"#7d93b2","font-size":11,"font-family":"JetBrains Mono"}); tx.textContent=nf(Math.round(v)); svg.append(tx); }
+  const step = Math.max(1, Math.ceil(days.length/8));
+  days.forEach((d,i)=>{ if (i%step && i!==days.length-1) return; const tx=mk("text",{x:x(i),y:H-8,"text-anchor":"middle",fill:"#7d93b2","font-size":11,"font-family":"JetBrains Mono"}); tx.textContent=fmtD(d); svg.append(tx); });
+  const ends = [];
+  top.forEach((p,i)=>{
+    svg.append(mk("path",{d:p.cum.map((v,j)=>(j?"L":"M")+x(j).toFixed(1)+" "+y(v).toFixed(1)).join(""),fill:"none","stroke-width":2.5,"stroke-linejoin":"round","stroke-linecap":"round",style:`stroke:${SERIES[i]}`}));
+    ends.push({i,p,yy:y(p.cum[p.cum.length-1])});
+  });
+  ends.sort((a,b)=>a.yy-b.yy); for (let k=1;k<ends.length;k++) if (ends[k].yy-ends[k-1].yy<15) ends[k].yy=ends[k-1].yy+15;
+  ends.forEach(e=>{ const tx=mk("text",{x:ml+iw+8,y:e.yy+4,fill:"#b7c9e0","font-size":13,"font-weight":800,"font-family":"Nunito"}); tx.textContent="@"+e.p.u; svg.append(tx); });
+  const cross = mk("line",{y1:mt,y2:mt+ih,stroke:"#b7c9e0","stroke-width":1,opacity:0}); svg.append(cross);
+  const dots = top.map((p,i)=>{ const c=mk("circle",{r:5,fill:"#0a2440","stroke-width":2.5,opacity:0,style:`stroke:${SERIES[i]}`}); svg.append(c); return c; });
+  const hit = mk("rect",{x:ml,y:mt,width:iw,height:ih,fill:"transparent"}); svg.append(hit);
+  box.append(svg);
+  const tip = el("div","ttip"); box.append(tip);
+  const move = ev => {
+    const r = svg.getBoundingClientRect(); const px = (ev.clientX - r.left) * W / r.width;
+    const j = Math.max(0, Math.min(days.length-1, Math.round((px-ml)/(iw/(days.length-1)))));
+    cross.setAttribute("x1",x(j)); cross.setAttribute("x2",x(j)); cross.setAttribute("opacity",.4);
+    dots.forEach((c,i)=>{ c.setAttribute("cx",x(j)); c.setAttribute("cy",y(top[i].cum[j])); c.setAttribute("opacity",1); });
+    tip.replaceChildren(el("b",null,wk(days[j])+" "+fmtD(days[j])));
+    top.map((p,i)=>({p,i})).sort((a,b)=>b.p.cum[j]-a.p.cum[j]).forEach(({p,i})=>{ const row=el("div","r"); const n=el("span"); const k=el("i"); k.style.cssText=`display:inline-block;width:10px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle;background:${SERIES[i]}`; n.append(k,"@"+p.u); row.append(n, el("span","mono",nf(p.cum[j]))); tip.append(row); });
+    const bx = box.getBoundingClientRect(); let lx = ev.clientX - bx.left + 14; if (lx + 180 > bx.width) lx -= 200;
+    tip.style.left = lx+"px"; tip.style.top = Math.max(0, ev.clientY - bx.top - 40)+"px"; tip.style.opacity = 1;
+  };
+  hit.addEventListener("pointermove", move);
+  hit.addEventListener("pointerleave", ()=>{ tip.style.opacity=0; cross.setAttribute("opacity",0); dots.forEach(c=>c.setAttribute("opacity",0)); });
+}
+
+let selDay = null;
+function renderDays(days, winners){
+  const bar = $("#days"); bar.replaceChildren();
+  if (!days.length){ $("#dpod").replaceChildren(empty("📅","Sem dias registrados ainda.")); $("#prompts").replaceChildren(); return; }
+  if (!selDay || !D.days[selDay]) selDay = days[days.length-1];
+  [...days].reverse().forEach(d => { const b = el("button", d===selDay?"on":"", wk(d)+" "+fmtD(d)); b.onclick = () => { selDay = d; renderDays(days, winners); }; bar.append(b); });
+  const day = D.days[selDay];
+  const order = Object.entries(day.players).sort((a,b)=>b[1].score-a[1].score);
+  const pod = $("#dpod"); pod.replaceChildren();
+  order.forEach(([u,p],i) => { const w = winners[selDay].includes(u); const c = el("div","pchip"+(w?" win":"")); const t = el("div");
+    t.append(el("b",null,(w?"👑 ":(i+1)+"º ")+"@"+u), el("span",null,p.score+" pts · "+nf(p.score*10)+" m de profundidade")); c.append(avatar(u), t); pod.append(c); });
+  const pr = $("#prompts"); pr.replaceChildren();
+  day.prompts.forEach((q,k) => {
+    const box = el("div","prompt"); const h = el("h3"); h.append(el("em",null,"#"+(k+1)), q); box.append(h);
+    const row = el("div","ans");
+    order.map(([u,p]) => ({u, a:p.answers[k]})).filter(x=>x.a).sort((a,b)=>b.a[1]-a.a[1]).forEach(({u,a}) => {
+      const t = tierOf(a[1],a[2]); const chip = el("span","a "+t); chip.title = "@"+u+" · "+(TIER[t]||"Não aceita");
+      if (t === "miss"){ chip.title = ""; chip.onmouseenter = chip.onclick = () => clown(chip); chip.onmouseleave = () => chip.querySelector(".clown")?.remove(); }
+      chip.append(avatar(u), a[0] || "—", el("s",null,String(a[1]))); row.append(chip);
+    });
+    box.append(row); pr.append(box);
+  });
+}
+
+let kMode = "krillion";
+function renderGal(allAns){
+  document.querySelectorAll("#ktoggle button").forEach(b => { b.className = b.dataset.k===kMode ? "on" : ""; b.onclick = () => { kMode = b.dataset.k; renderGal(allAns); }; });
+  const g = $("#gal"); g.replaceChildren();
+  const items = allAns.filter(x => tierOf(x.a[1],x.a[2])===kMode).sort((a,b)=>b.d.localeCompare(a.d));
+  if (!items.length){ g.append(empty(kMode==="krillion"?"🦐":"🌊", kMode==="krillion" ? "Nenhum krillion ainda. O primeiro a achar entra pra história do lago." : "Nenhum deep cut ainda.")); return; }
+  items.forEach(x => { const c = el("div","kc"+(kMode==="deepcut"?" dc":"")); c.append(el("div","lbl",kMode==="krillion"?"🦐 ONE IN A KRILLION · 100":"🌊 DEEP CUT · 85"), el("div","ans-t",x.a[0]), el("div","q",D.days[x.d].prompts[x.k]||""));
+    const by = el("div","by"); by.append(avatar(x.u), "@"+x.u+" · "+wk(x.d)+" "+fmtD(x.d)); c.append(by); g.append(c); });
+}
+
+function route(){
+  const v = (location.hash||"#ranking").slice(1);
+  const ok = ["ranking","dia","krillions","regras"].includes(v) ? v : "ranking";
+  document.querySelectorAll("section").forEach(s => s.classList.toggle("on", s.id==="v-"+ok));
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", a.dataset.v===ok));
+}
+
+// easter egg: chegou no fim da página
+(() => {
+  const egg = $("#egg"), zone = $("#eggzone"); let t;
+  new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting && document.documentElement.scrollHeight > innerHeight + 200){
+      egg.classList.add("show"); clearTimeout(t); t = setTimeout(() => egg.classList.remove("show"), 3500);
+    } else if (!e.isIntersecting) { egg.classList.remove("show"); }
+  }), {threshold: 1}).observe(zone);
+})();
+
+// come-curioso: forçou a rolagem depois do fim
+(() => {
+  const cc = $("#cc"); let force = 0, last = 0, ty = null;
+  const atBottom = () => scrollY + innerHeight >= document.documentElement.scrollHeight - 6;
+  const eaten = () => { cc.classList.add("on"); document.body.style.overflow = "hidden"; force = 0; };
+  const push = n => { const now = Date.now(); if (now - last > 1500) force = 0; last = now;
+    if (!atBottom() || !$("#egg").classList.contains("show")) { force = 0; return; }
+    force += n; if (force > 1400) eaten(); };
+  addEventListener("wheel", e => { if (e.deltaY > 0) push(Math.min(e.deltaY, 120)); }, {passive:true});
+  addEventListener("touchstart", e => { ty = e.touches[0].clientY; }, {passive:true});
+  addEventListener("touchmove", e => { if (ty == null) return; const y = e.touches[0].clientY; if (ty - y > 0) push((ty - y) * 2.2); ty = y; }, {passive:true});
+  addEventListener("keydown", e => { if (["ArrowDown","PageDown","End"," "].includes(e.key)) push(300); });
+  $("#ccback").onclick = () => { cc.classList.remove("on"); document.body.style.overflow = ""; scrollTo({top:0, behavior:"smooth"}); };
+})();
+
+// katarina: digitou "katarina" → cardume de camarão
+(() => {
+  const kat = $("#kat"); let buf = "", busy = false;
+  const fire = () => {
+    if (busy) return; busy = true;
+    kat.querySelectorAll(".shr").forEach(n => n.remove());
+    for (let i = 0; i < 70; i++){
+      const e = el("span","shr","🦐");
+      e.style.cssText = `--sz:${18+Math.random()*44}px;--y:${Math.random()*96}vh;--d:${2.2+Math.random()*2.2}s;--dl:${Math.random()*1.4}s;--r:${-10+Math.random()*20}deg`;
+      kat.append(e);
+    }
+    const m = kat.querySelector(".msg"); m.style.animation = "none"; m.offsetHeight; m.style.animation = "";
+    kat.classList.add("on");
+    setTimeout(() => { kat.classList.remove("on"); busy = false; }, 4600);
+  };
+  const feed = ch => { buf = (buf + ch.toLowerCase()).slice(-8); if (buf === "katarina"){ buf = ""; fire(); return true; } };
+  addEventListener("keydown", e => { if (e.target.id !== "sin" && e.key.length === 1) feed(e.key); });
+  const sb = $("#sbox"), si = $("#sin");
+  $("#secret").onclick = () => { sb.classList.add("on"); si.value = ""; si.focus(); };
+  si.addEventListener("input", () => { if (si.value.toLowerCase().replace(/\s/g,"").includes("katarina")){ si.blur(); sb.classList.remove("on"); fire(); } });
+  si.addEventListener("blur", () => setTimeout(() => sb.classList.remove("on"), 150));
+})();
+
+// ===== easter eggs extras =====
+let toastT;
+function toast(msg, ms=2600){ const t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("on"), ms); }
+function clown(chip){ if (chip.querySelector(".clown")) return; const c = el("span","clown","🤡 aceita que dói menos"); chip.append(c); setTimeout(() => c.remove(), 2200); }
+
+// monstro do lago: clicou na foto
+(() => { const lk = $("#lake"); let t;
+  document.querySelector(".hero").addEventListener("click", e => { if (e.target.closest(".count,.secret,.sbox")) return; lk.classList.add("up"); clearTimeout(t); t = setTimeout(() => lk.classList.remove("up"), 4200); });
+})();
+// aba abandonada
+(() => { const orig = document.title; let away = false, t;
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden){ away = true; document.title = "volta aqui 👀 o Come-Curioso tá com fome"; }
+    else if (away){ document.title = "achei que tinha fugido 😏"; clearTimeout(t); t = setTimeout(() => document.title = orig, 2500); away = false; }
+  });
+})();
+// puxa-saco do líder
+(() => { let n = 0, t;
+  document.addEventListener("click", e => { if (!e.target.closest("#leadav")) return;
+    n++; clearTimeout(t); t = setTimeout(() => n = 0, 3000);
+    if (n >= 10){ n = 0; const c = document.querySelector(".pd.p1 .crown"); if (c){ c.classList.add("fall"); setTimeout(() => c.classList.remove("fall"), 1600); } toast("👑💥 para de puxar saco"); }
+  });
+})();
+// zona abissal: meia-noite às 5h (ou #abissal pra testar)
+(() => { const ab = $("#abyss"), h = new Date().getHours();
+  let off = false; try { off = sessionStorage.getItem("luz") === "1"; } catch(e) {}
+  if (!((h >= 0 && h < 5) || location.hash === "#abissal") || off) return;
+  ab.classList.add("on");
+  const mv = (x,y) => { document.documentElement.style.setProperty("--mx", x+"px"); document.documentElement.style.setProperty("--my", y+"px"); };
+  mv(innerWidth/2, innerHeight/2);
+  addEventListener("pointermove", e => mv(e.clientX, e.clientY), {passive:true});
+  addEventListener("touchmove", e => mv(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  $("#lights").onclick = () => { ab.classList.remove("on"); try { sessionStorage.setItem("luz","1"); } catch(e) {} toast("💡 covarde"); };
+})();
+addEventListener("hashchange", route); route();
+
+(async () => {
+  try {
+    const r = await fetch("data.json", {cache:"no-store"}); D = await r.json();
+    try { const ra = await fetch("avatars.json", {cache:"no-store"}); if (ra.ok) AVS = await ra.json(); } catch(e) {}
+    D.days = D.days || {}; D.season = D.season || {start:"2026-11-11",end:"2026-12-31"};
+    render();
+  } catch(e){ $("#count").replaceChildren(el("span",null,"Não consegui carregar os dados")); }
+})();
+</script>
+</body>
+</html>
